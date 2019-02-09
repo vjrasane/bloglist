@@ -1,7 +1,7 @@
 require('babel-polyfill')
 
 // const webpack = require('webpack')
-const HtmlWebPackPlugin = require('html-webpack-plugin')
+// const HtmlWebPackPlugin = require('html-webpack-plugin')
 const path = require('path')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 
@@ -59,11 +59,12 @@ module.exports = {
     ]
   },
   plugins: [
-    new HtmlWebPackPlugin({
-      template: './public/index.html',
-      filename: './index.html'
-    }),
+    // new HtmlWebPackPlugin({
+    //   template: './public/index.html',
+    //   filename: 'index.html'
+    // }),
     new CopyWebpackPlugin([
+      { from: './public/index.html', to: 'index.html' },
       { from: './public/manifest.json', to: 'manifest.json' },
       { from: './public/favicon.ico', to: 'favicon.ico' }
     ])

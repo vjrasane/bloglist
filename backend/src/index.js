@@ -27,7 +27,7 @@ const root = join(__dirname, '../dist')
 app.use(express.static(root))
 
 const fallback = require('express-history-api-fallback')
-app.use(fallback(join(root, 'index.html')))
+app.use(fallback('index.html', ({ root })))
 
 app.use(middleware.error)
 
