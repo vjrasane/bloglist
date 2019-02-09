@@ -1,0 +1,33 @@
+#blog-list-view
+  margin 15px
+
+#blog-add-sidebar
+  position absolute
+  top 0
+  height 100%
+  width 350px
+  // background white
+  z-index 100
+  transition 0.2s left linear
+
+  &.open
+    left 0
+
+  &.closed
+    left -350px
+
+#blog-add-overlay
+  position fixed
+  top 0
+  left 0
+  width 100vw
+  height 100vh
+  background black
+  opacity 0.3
+  z-index 99
+
+  &.on
+    display initial 
+
+  &.off
+    display none

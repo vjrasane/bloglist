@@ -1,0 +1,43 @@
+.notification-container 
+  position absolute
+  margin-left 25%
+  z-index 10
+  width 50%
+
+.notification 
+  color black
+  font-size 20px
+  padding 10px
+  margin-bottom 10px
+
+  &.visible
+    -webkit-animation fade-in 1s forwards
+    animation fade-in 1s forwards
+
+  &.hidden
+    -webkit-animation fade-out 1s forwards
+    animation fade-out 1s forwards
+
+@keyframes fade-in
+  from 
+    opacity 0
+  to 
+    opacity 1
+
+@keyframes fade-out
+  from 
+    opacity 1
+  to 
+    opacity 0
+
+.message
+  background azure
+  border-color deepskyblue
+
+.success
+  background lightgreen
+  border-color green
+
+.error 
+  background lightcoral
+  border-color red

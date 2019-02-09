@@ -1,0 +1,14 @@
+[ignore]
+.*/node_modules/.*
+.*/dist/.*
+.*/public/.*
+.*/build/.*
+[include]
+
+[libs]
+
+[lints]
+
+[options]
+
+[strict]
