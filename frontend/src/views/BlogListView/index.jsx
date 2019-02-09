@@ -4,8 +4,12 @@ import { Button, Segment, Form, Input, Label } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import blogService from '../../services/blogs'
 import { notify } from '../../redux/notifs'
-import { isWebUri } from 'valid-url'
+import { isUrl } from 'is-valid-url'
+import Filter from 'bad-words'
+
 import './index.styl'
+
+const profanity = new Filter()
 
 const FieldError = ({ message }) => (
   <Label basic color='red' pointing>
@@ -25,12 +29,15 @@ class AddSidebar extends React.Component {
   submit = async () => {
     const { title, author } = this.state.inputs
     const errors = Object.entries(this.state.inputs).reduce(
-      (errs, [field, input]) =>
-        input ? errs : { ...errs, [field]: 'Cannot be empty!' },
+      (errs, [field, input]) => {
+        let error = !input ? 'Cannot be empty!' : null
+        error = profanity.isProfane(input) ? 'Contains profanity!' : error
+        return error ? { ...errs, [field]: error } : errs
+      },
       {}
     )
 
-    if (!isWebUri(this.state.inputs.url)) {
+    if (!isUrl(this.state.inputs.url)) {
       errors.url = 'Not a valid URL!'
     }
 
@@ -63,7 +70,7 @@ class AddSidebar extends React.Component {
                   <label>{field}</label>
                   <Input
                     placeholder={field}
-                    value={this.state[lower]}
+                    value={this.state.inputs[lower]}
                     onChange={this.updateField(lower)}
                   />
                   {errors[lower] && <FieldError message={errors[lower]} />}

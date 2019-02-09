@@ -5,7 +5,10 @@ import { connect } from 'react-redux'
 import userService from '../../services/users'
 import { login } from '../../redux/login'
 import { notify } from '../../redux/notifs'
+import Filter from 'bad-words'
 import './index.styl'
+
+const profanity = new Filter()
 
 const FieldError = ({ message }) => (
   <Label basic color='red' pointing>
@@ -26,6 +29,10 @@ class LoginView extends React.Component {
     let errors = {}
     if (!username) {
       errors.username = 'Choose a username!'
+    }
+
+    if (profanity.isProfane(username)) {
+      errors.username = 'Contains profanity!'
     }
 
     if (users.some(u => u.name === username)) {
@@ -54,7 +61,7 @@ class LoginView extends React.Component {
       await this.props.login(this.state)
       this.props.notify(`Logged in as ${username}`, 'message')
     } catch (ex) {
-      this.props.notify('invalid username or password', 'error')
+      this.props.notify('Invalid username or password', 'error')
     }
   }
 

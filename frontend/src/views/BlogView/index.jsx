@@ -13,7 +13,10 @@ import {
 } from 'semantic-ui-react'
 import blogService from '../../services/blogs'
 import { notify } from '../../redux/notifs'
+import Filter from 'bad-words'
 import './index.styl'
+
+const profanity = new Filter()
 
 const FieldError = ({ message }) => (
   <Label basic color='red' pointing>
@@ -57,6 +60,7 @@ class BlogComments extends React.Component {
 
   submit = async () => {
     let error = !this.state.reply ? 'Type something!' : null
+    error = profanity.isProfane(this.state.reply) ? 'Contains profanity!' : error
 
     this.setState({ error })
     if (!error) {

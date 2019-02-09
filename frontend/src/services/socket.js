@@ -2,7 +2,7 @@ import openSocket from 'socket.io-client'
 
 const { hostname, port } = window.location
 
-const socket = openSocket('http://' + hostname + ':' + port)
+const socket = openSocket('ws://' + hostname + ':' + port)
 
 export const subscribeToTimer = callback => {
   socket.on('timer', timestamp => callback(null, timestamp))
