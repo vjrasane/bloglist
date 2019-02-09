@@ -23,7 +23,7 @@ app.use('/api/login', loginRouter)
 
 const { join } = require('path')
 
-const root = join(__dirname, '../../frontend/dist')
+const root = join(__dirname, '../dist')
 app.use(express.static(root))
 
 const fallback = require('express-history-api-fallback')

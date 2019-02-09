@@ -4,6 +4,8 @@ script:
 - cd frontend
 - yarn install
 - yarn build
+- cd ../backend
+- cp -r ../frontend/dist ./
 deploy:
   skip_cleanup: true
   provider: heroku
