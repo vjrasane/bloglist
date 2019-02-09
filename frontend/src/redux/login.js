@@ -24,15 +24,13 @@ export const initUser = () => {
   return { type: null }
 }
 
-export const login = credentials => {
-  return async d => {
-    const user = await loginService.login(credentials)
-    window.localStorage.setItem('loggedBlogAppUser', JSON.stringify(user))
-    d({
-      type: 'LOGIN',
-      user
-    })
-  }
+export const login = credentials => async d => {
+  const user = await loginService.login(credentials)
+  window.localStorage.setItem('loggedBlogAppUser', JSON.stringify(user))
+  d({
+    type: 'LOGIN',
+    user
+  })
 }
 
 export const logout = () => {
