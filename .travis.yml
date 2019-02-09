@@ -1,0 +1,13 @@
+language: node_js
+node_js: 8
+script:
+- cd frontend
+- yarn install
+- yarn build
+deploy:
+  skip_cleanup: true
+  provider: heroku
+  app: bloglist-fullstack-app
+  api_key:
+    secure: RkjsoFJy0KzAfF1+mUdemQ/5hQ58M8/kbfYxbhO3TCl/VzxPa71j5f07TdjizZPfIcCUTvrGPnSzuEpRJqaO2s+wphSArDSBS1lSoDVi10ZN4oiCom7kR7WTYnkK+9UetrbsjpR9vmWR7zNwYh4cEing2kjGSMFCghYLi3QFZDCTcna6w+o1Bat5C8I8k57WWEyZY6Kjp3Wbi40TTnaOLPWmvDuC+tV17CAwl5f5iFbMWyIyaxpkIxBz6JYyDrcKI+C9oZI7lfU49SAG+KAfh5Toz8dOZ8P9D8dE9D3t6NJ6uIASPnfIoK11EvCMsMnlpszDbq9VW2UOXXpyr7rg0QjDg/hGNZlzf/w8edjCFyfN+4aOnF4BfjEuvWdesWkbj3iT+5343RwmY1szaXfBDzGrMxQ4WnzbDYJAbkKqc68xTVc59QzGJI6ouIejuAZ+LS6+PN7icdD35KWWGywP7rojyzoRZYx+XuQ/wyPkfQrqkehUN/L4vb1gt1NLp0kU/80b3aTuAm0Ap4YNk8PQ4/gL7jt2qV6sobXXUBTfJOPZfPKP5953iXzEqOXJNX03OENMLCPJWsmcE62rONYWdPHpFSFeYu7gvo+V78czPBuubIot01OlGxkFUX2Htk6SexSU9x3Rd9zZQunmxAgN5yIQXx9jhac7lvglK1Szw4I=
+cache yarn

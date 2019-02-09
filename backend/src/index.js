@@ -1,4 +1,6 @@
-const app = require('express')()
+
+const express = require('express')
+const app = express()
 const server = require('http').createServer(app)
 const sockets = require('./config/sockets')
 sockets.init(server)
@@ -18,6 +20,14 @@ const loginRouter = require('./controllers/login')
 app.use('/api/blogs', blogRouter)
 app.use('/api/users', userRouter)
 app.use('/api/login', loginRouter)
+
+const { join } = require('path')
+
+const root = join(__dirname, '../../frontend/dist')
+app.use(express.static(root))
+
+const fallback = require('express-history-api-fallback')
+app.use(fallback(join(root, 'index.html')))
 
 app.use(middleware.error)
 
